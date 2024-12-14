@@ -1,0 +1,112 @@
+[
+  {
+    "toplulukId": 1,
+    "toplulukAdi": "Bilim Topluluğu",
+    "hakkinda": "Bilim meraklılarını bir araya getiren topluluğumuz, bilimsel sohbetler, deneyler ve paneller düzenler. Her yaştan ve farklı ilgi alanlarına sahip bireyleri bilim dünyasına dahil etmeyi amaçlayan topluluğumuz, üyelerine hem eğitici hem de eğlenceli etkinlikler sunmaktadır. Bilimsel projeler, laboratuvar deneyimleri ve tartışma gruplarıyla katılımcıların bilgi birikimini artırmayı hedefliyoruz.",
+    "toplulukBaskani": "Ahmet Yılmaz",
+    "iletisim": "bilim@topluluk.com",
+    "gecmisEtkinlikleri": [1, 17],
+    "logo": "https://example.com/logos/bilim-toplulugu.png",
+    "toplulukKategorisi": "Uzmanlık Topluluğu",
+    "uyeSayisi": 120
+  },
+  {
+    "toplulukId": 2,
+    "toplulukAdi": "Müzik Kulübü",
+    "hakkinda": "Müzik severler için bir araya gelen kulübümüz, konserler ve atölyeler düzenler. Farklı müzik türlerini keşfetmek, birlikte müzik yapmak ve sahne deneyimi kazanmak isteyenler için eşsiz bir ortam sunuyoruz.",
+    "toplulukBaskani": "Ayşe Kaya",
+    "iletisim": "muzik@kulup.com",
+    "gecmisEtkinlikleri": [2, 13],
+    "logo": "https://example.com/logos/muzik-kulubu.png",
+    "toplulukKategorisi": "Kültür-Sanat Topluluğu",
+    "uyeSayisi": 80
+  },
+  {
+    "toplulukId": 3,
+    "toplulukAdi": "Sanat Topluluğu",
+    "hakkinda": "Sanatın her dalıyla ilgilenen topluluğumuz, sergiler ve sanat günleri organize eder. Görsel sanatlar, heykel, resim, fotoğrafçılık gibi birçok alanda etkinlikler düzenleyerek, üyelerimizin sanatsal ifade yeteneklerini geliştirmelerine olanak sağlıyoruz.",
+    "toplulukBaskani": "Elif Demir",
+    "iletisim": "sanat@topluluk.com",
+    "gecmisEtkinlikleri": [3, 14],
+    "logo": "https://example.com/logos/sanat-toplulugu.png",
+    "toplulukKategorisi": "Kültür-Sanat Topluluğu",
+    "uyeSayisi": 150
+  },
+  {
+    "toplulukId": 4,
+    "toplulukAdi": "Doğa Sporları Topluluğu",
+    "hakkinda": "Doğayı keşfetmeyi ve doğa ile iç içe olmayı sevenler için doğa yürüyüşleri, kamp etkinlikleri ve tırmanış organizasyonları düzenliyoruz.",
+    "toplulukBaskani": "Mehmet Çelik",
+    "iletisim": "dogasporlari@topluluk.com",
+    "gecmisEtkinlikleri": [4, 18],
+    "logo": "https://example.com/logos/doga-sporlari.png",
+    "toplulukKategorisi": "Hobi Topluluğu",
+    "uyeSayisi": 60
+  },
+  {
+    "toplulukId": 5,
+    "toplulukAdi": "Yazılım Geliştiriciler Kulübü",
+    "hakkinda": "Yazılım geliştirme alanında kendini geliştirmek isteyenlere yönelik atölyeler ve projeler sunuyoruz. Kodlama kampları ve hackathonlar düzenleyerek üyelerimizin teknik becerilerini artırmalarına destek oluyoruz.",
+    "toplulukBaskani": "Deniz Arslan",
+    "iletisim": "yazilim@kulup.com",
+    "gecmisEtkinlikleri": [5, 19],
+    "logo": "https://example.com/logos/yazilim-kulubu.png",
+    "toplulukKategorisi": "Uzmanlık Topluluğu",
+    "uyeSayisi": 200
+  },
+  {
+    "toplulukId": 6,
+    "toplulukAdi": "Kitap Kulübü",
+    "hakkinda": "Edebiyat tutkunlarını bir araya getirerek kitap okuma etkinlikleri ve yazar buluşmaları düzenliyoruz. Her ay farklı temalarda kitaplar okuyarak tartışmalar yapıyoruz.",
+    "toplulukBaskani": "Zeynep Kurt",
+    "iletisim": "kitap@kulup.com",
+    "gecmisEtkinlikleri": [6, 20],
+    "logo": "https://example.com/logos/kitap-kulubu.png",
+    "toplulukKategorisi": "Kültür-Sanat Topluluğu",
+    "uyeSayisi": 90
+  },
+  {
+    "toplulukId": 7,
+    "toplulukAdi": "Fotoğrafçılık Topluluğu",
+    "hakkinda": "Fotoğraf çekmeyi sevenler için düzenlediğimiz fotoğraf turları ve atölyelerle, üyelerimize sanatsal bir bakış açısı kazandırıyoruz.",
+    "toplulukBaskani": "Ali Şahin",
+    "iletisim": "fotografcilik@topluluk.com",
+    "gecmisEtkinlikleri": [7, 21],
+    "logo": "https://example.com/logos/fotografcilik.png",
+    "toplulukKategorisi": "Hobi Topluluğu",
+    "uyeSayisi": 75
+  },
+  {
+    "toplulukId": 8,
+    "toplulukAdi": "Tiyatro Kulübü",
+    "hakkinda": "Tiyatro sahnesinde olmak isteyenler için hem oyunculuk eğitimleri hem de sahne performansları düzenliyoruz. Tiyatro sevgisini geniş kitlelere yaymayı hedefliyoruz.",
+    "toplulukBaskani": "Ece Balcı",
+    "iletisim": "tiyatro@kulup.com",
+    "gecmisEtkinlikleri": [8, 22],
+    "logo": "https://example.com/logos/tiyatro-kulubu.png",
+    "toplulukKategorisi": "Kültür-Sanat Topluluğu",
+    "uyeSayisi": 110
+  },
+  {
+    "toplulukId": 9,
+    "toplulukAdi": "Girişimcilik Topluluğu",
+    "hakkinda": "Girişimcilik dünyasına adım atmak isteyenler için seminerler ve iş geliştirme kampları düzenliyoruz. Yeni fikirler üretmek ve projeler oluşturmak isteyenleri destekliyoruz.",
+    "toplulukBaskani": "Serkan Yıldırım",
+    "iletisim": "girisim@topluluk.com",
+    "gecmisEtkinlikleri": [9, 23],
+    "logo": "https://example.com/logos/girisimcilik.png",
+    "toplulukKategorisi": "Uzmanlık Topluluğu",
+    "uyeSayisi": 95
+  },
+  {
+    "toplulukId": 10,
+    "toplulukAdi": "E-Spor Kulübü",
+    "hakkinda": "E-Spor meraklıları için düzenlediğimiz turnuvalar ve takım çalışmalarımızla, bu alanda kariyer yapmak isteyenlere destek oluyoruz.",
+    "toplulukBaskani": "Mert Karaca",
+    "iletisim": "espor@kulup.com",
+    "gecmisEtkinlikleri": [10, 24],
+    "logo": "https://example.com/logos/espor-kulubu.png",
+    "toplulukKategorisi": "Hobi Topluluğu",
+    "uyeSayisi": 140
+  }
+]

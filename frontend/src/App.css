@@ -1,0 +1,375 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
+
+
+
+
+/* Aydınlık mod  */
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Karanlık mod */
+[data-theme="dark"] {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.mode-button{
+  color: rgb(56, 158, 114);
+  border: 2px solid rgb(56, 158, 114); 
+  padding: 8px;
+  margin:10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.mode-button:hover {
+  background-color:rgb(56, 158, 114);
+  color: #ffffff; /* Hover durumunda metin rengi */
+}
+
+.bold-type{
+ font-weight: bold;
+}
+
+.center-class{
+  display: flex;
+  justify-content: center;
+}
+
+/*AnaSayfa.jsx*/
+.section {
+  position: relative; /* Metinlerin görselin üzerinde olması için */
+  background-image: url(../public/sdu.jpg); /* Buraya görsel yolunu ekleyin */
+  background-size: cover; /* Görseli kapsayacak şekilde boyutlandırır */
+  background-position: center; /* Görselin ortalanması */
+  background-position-y: cen;
+  height: 500px; /* Section yüksekliği */
+  display: flex; /* İçerik merkezleme için */
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-end;
+  color: white; /* Metin rengini beyaz yapar */
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7); /* Metin okunabilirliğini artırır */
+}
+
+.ana-title{
+  color: rgb(56, 158, 114);;
+  font-size: xxx-large;
+  background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.ana-subtitle{
+  color: #ffffff;
+  font-size: xx-large;
+}
+
+.ana-str{
+  color: #ffffff;
+}
+
+/*Navbar */
+
+
+
+.level-right {
+  margin-right: 20px;
+}
+.level-left-20px {
+   margin-left: 20px;
+}
+
+.left-60px{
+  margin-left: 60px;
+}
+
+.navbar-item{
+  color: rgb(56, 158, 114);
+}
+.navbar-link:not(.is-arrowless):after{
+  border-color: rgb(40, 82, 64);
+}
+
+.navbar-link{
+  color: rgb(56, 158, 114);
+
+}
+
+
+.columns{
+  width: 1000px;
+}
+
+.button-navbar{
+  margin: auto;
+  margin-bottom: 20px;
+  color: rgb(56, 158, 114);
+  
+}
+
+.underline {
+  text-decoration: underline; 
+}
+
+.nav-title{
+  color:rgb(40, 82, 64);
+}
+
+
+
+/*Footer*/
+.footer{
+  position: relative;
+  margin-top: 30px;
+}
+
+
+
+/*YaklasanEtkinlikler.jsx*/
+
+.card{
+  width: 200px;
+  max-width: 100%;
+  height: 300px;  
+  scroll-snap-align: start; /* Kaydırma sırasında kartların hizalanması için */
+  flex: 0 0 auto; 
+  
+
+}
+
+.card-display{
+  display: flex;
+  gap: 1rem; /* Kartlar arasındaki boşluk */
+  overflow-x: auto; /* Yatay kaydırma için */
+  scroll-snap-type: x mandatory; /* Kaydırma sırasında kartların kaymasını sağlamak için */
+  justify-content: center;
+  margin-top: 50px;
+
+}
+
+.padding-20px{
+  padding: 20px;
+}
+
+
+
+.community-detail{
+  font-weight: bolder;
+  margin-top: 20px
+}
+
+
+
+.button-container {
+  display: flex; /* Butonlar ve kartların yan yana dizilmesi için */
+  align-items: center;
+  height: 60px;
+}
+
+
+/*GecmisEtkinlikler.jsx*/
+.gecmis{
+  background-color: rgb(201, 223, 223);
+  width: 73%;
+  border-radius: 20px;
+  margin:auto;
+  margin-top: 50px;
+  
+}
+.columns.header {
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 10px;
+  text-align: center;
+  color: rgb(54, 52, 52);
+  padding: 10px 0;
+}
+
+.columns.row {
+  display: flex;
+  text-align: center;
+  border-bottom: 1px solid rgb(56, 158, 114);
+  padding: 10px 0;
+  color: white;
+  margin: auto;
+}
+
+.column-gecmis-etk {
+  flex: 1;
+  color: rgb(40, 82, 64);
+}
+
+.pagination{
+  padding: 10px;
+}
+
+.pagination-link.is-current, .pagination-link.is-selected{
+ background-color:rgb(56, 158, 114);
+ border-color: rgb(40, 82, 64);
+}
+
+
+
+
+
+/*ContactForm*/
+.contact-form{
+  width: 50%;
+  border-radius: 20px;
+  margin:auto;
+  margin-top: 100px;
+}
+
+
+
+/*EtkinlikBilgisi.jsx*/
+.card-image-etkinlik{
+  width: 25%;
+  margin:100px;
+
+}
+
+.card-etkinlik{
+  width: 700px;
+  max-height: fit-content;
+}
+
+.card-etkinlik-bilgisi{
+  text-align: right; 
+  width: 100%;
+  max-height: fit-content;
+}
+
+
+/*ToplulukCards.jsx*/
+.page-container{
+  display: flex;
+  justify-content: center; /* Yatay  */
+  align-items: flex-start;
+  height: 100vh;
+  margin: 50px;
+
+}
+.topl-box{
+  border-style: double;
+  border-color: rgb(56, 158, 114) ;
+  display: flex;
+  align-items: center; /* Logo ve metni dikey olarak ortala */
+  gap: 1rem;
+  color: rgb(40, 82, 64);
+  background-color: #ffffff;
+  width: 100%;
+  height: 110px;
+  border-radius: 12px;
+
+  
+  
+}
+.topl-satir{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.image.is-custom-size {
+  width: 64px;   
+  height: 64px; 
+}
+
+.topluluk-adi{
+  font-size: large;
+  font-weight: 700;
+  margin-top: 1rem; /* Topluluk adının ve ikonların arasına boşluk ekleyin */
+  text-align: left;
+  
+}
+
+.topluluk-icons{
+  margin-top: 1rem; /* İkonların topluluk adının altına yerleşmesi için boşluk ekleyin */
+  display: flex;
+  gap: 0.5rem; /* İkonlar arasına boşluk ekle */
+}
+
+
+.tabs li.is-active a {
+  color: #ffffff !important;
+  background-color: rgb(243, 146, 50) !important;
+}
+
+
+.tabs.is-boxed li.is-active a{
+  background-color: rgb(243, 146, 50) ;
+}
+
+/*ToplulukBilgisi.jxs*/
+.card-image-topluluk{
+  width: 25%;
+  margin:100px;
+
+}
+
+.topluluk-image{
+  width: 300px; 
+  height: 300px;
+  object-fit: cover; /* Görselin boyuta göre kırpar */
+}
+
+.topluluk-aktiflik{
+  width: 300px;
+  max-height: fit-content;
+  margin-top: 50px;
+}
+
+.column-right{
+  align-items: flex-start;
+  
+}
+
+
+
+
+
+/*ToplulukGecmisEtk.jsx*/
+
+.topluluk-detay-gecmis{
+  margin:72px ;
+  display: flex;
+  justify-content: flex-start; 
+  
+}
+
+.box{
+  --bulma-box-background-color:rgb(243, 146, 50) ;
+  --bulma-box-color: rgb(255, 255, 255);
+  width: fit-content;
+  max-width: 600px; 
+  height: fit-content;
+  margin-left: 72px;
+  font-weight: 700;
+  
+  
+}
+
+/*ToplulukGelecekEtkCard.jsx*/
+.afis-gorsel{
+  width: 170px ;
+  height: 250px;
+  object-fit: cover;
+}
+
+.top-gelecek-card{
+  color: #000000;
+  font-weight: normal;
+}
+
+.box-t{
+  background-color: #ffffff;
+  width: 100%;
+  word-wrap: break-word; /* Uzun kelimeleri böler */
+  overflow-wrap: break-word; 
+  display: block;
+  
+}
+
