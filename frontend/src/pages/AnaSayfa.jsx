@@ -1,15 +1,12 @@
 import React from 'react'
+import AnaSayfaCards from '../components/AnaSayfaCards'
+import SduRibbon from '../components/SduRibbon'
 
 const AnaSayfa = () => {
   return (
     <div>
-      <section class="section is-medium">
-  <h1 class="title ana-title">TOPLULUK32</h1>
-  <h2 class="subtitle ana-subtitle">
-    Süleyman Demirel Üniversitesi'nin  <strong class="ana-str">Topluluk Medyası</strong>
-   
-  </h2>
-</section>
+      <SduRibbon/>
+      <AnaSayfaCards/>
     </div>
   )
 }

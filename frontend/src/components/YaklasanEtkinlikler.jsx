@@ -51,7 +51,7 @@ const YaklasanEtkinlikler = () => {
     <button class="button button-container level-left-20px" onClick={scrollLeft}><FaArrowLeft />
 </button>
     {etkinlikler.slice(sliceStart,sliceEnd).map((etkinlik, index) => (
-        <div class="card left-60px" key={index}>
+        <div class="card yaklasan-card left-60px" key={index}>
         <div class="card-image">
           <figure class="image is-4by3">
             <img

@@ -7,6 +7,7 @@
 body {
   background-color: #ffffff;
   color: #000000;
+  padding-top: 60px;
 }
 
 /* Karanlık mod */
@@ -38,7 +39,7 @@ body {
   justify-content: center;
 }
 
-/*AnaSayfa.jsx*/
+/*SduRibbon.jsx*/
 .section {
   position: relative; /* Metinlerin görselin üzerinde olması için */
   background-image: url(../public/sdu.jpg); /* Buraya görsel yolunu ekleyin */
@@ -70,9 +71,77 @@ body {
   color: #ffffff;
 }
 
+
+
+
+/*AnaSayfa-Cards.jsx*/
+
+.ana-cards{
+  margin-top: 60px;
+}
+
+
+.columns {
+  display: block; /* Flex düzenini kaldırır */
+}
+
+.anasayfa-cards{
+  width: 500px !important;
+  max-width: 100%;
+  height: 440px ;  
+  margin-left: 20px;
+}
+
+.anasayfa-cards2{
+  width: 350px !important;
+  max-width: 100%;
+  height: 440px;  
+  margin-left: 40px;
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.content h2 {
+  color: white;
+}
+
+.tag.is-medium{
+  background-color: rgb(56, 158, 114);
+  color: #ffffff;
+  margin: 10px;
+}
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 1rem;
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+
+
+
+
+
 /*Navbar */
 
-
+.navbar{
+  position: fixed; /* Navbar'ı sabitler */
+  top: 0; /* Sayfanın üst kısmına yerleştirir */
+  left: 0; /* Sayfanın sol kısmına yerleştirir */
+  width: 100%; /* Navbar'ın genişliği tam sayfa genişliği kadar */
+  z-index: 1000; /* Navbar'ın diğer içeriklerin üstünde görünmesini sağlar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Navbar'a gölge ekler */
+}
 
 .level-right {
   margin-right: 20px;
@@ -88,6 +157,11 @@ body {
 .navbar-item{
   color: rgb(56, 158, 114);
 }
+
+.navbar-brand{
+  margin-left: 30px;
+}
+
 .navbar-link:not(.is-arrowless):after{
   border-color: rgb(40, 82, 64);
 }
@@ -129,7 +203,7 @@ body {
 
 /*YaklasanEtkinlikler.jsx*/
 
-.card{
+.yaklasan-card{
   width: 200px;
   max-width: 100%;
   height: 300px;  
@@ -373,3 +447,9 @@ body {
   
 }
 
+
+
+/*ToplulukKAtegoriBar.jsx*/
+.tabs{
+  margin-top: 10px;
+}
