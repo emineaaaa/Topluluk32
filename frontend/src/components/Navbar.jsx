@@ -88,8 +88,8 @@ const visibleSporTopluluklari = showAll
   return (
     <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <button class="navbar-item" onClick={handleAnaSayfa} >
-      TOPLULUK32
+    <button class="navbar-item navbar-logo" onClick={handleAnaSayfa} >
+      <img src="/Topluluk-kopyasi.png" alt="Topluluk32" />
     </button>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
