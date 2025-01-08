@@ -1,0 +1,27 @@
+const Yonetici= require('../models/yoneticiModel');
+const jwt= require('jsonwebtoken');
+
+const protectRoute = async (req, res, next) => {
+    try {
+        const token = req.cookies.jwt || 
+              (req.headers.authorization && req.headers.authorization.split(" ")[1]);
+           
+
+    if (!token) return res.status(401).json({ message: "Giris Yapmalısınız" });
+
+    const decoded= jwt.verify(token, process.env.JWT_SECRET);
+    const yonetici= await Yonetici.findById(decoded.userId).select('-password');
+    
+    if (!yonetici) return res.status(401).json({ message: "Giris Yapmalısınız" });
+
+    req.yonetici= yonetici;
+    next();
+
+
+    }  catch (error) {
+         res.status(500).json({ message: error.message });
+          console.log("Error in protectRoute: ", error.message);
+    }   
+
+}
+module.exports = protectRoute;
