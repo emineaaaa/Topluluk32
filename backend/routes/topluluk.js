@@ -5,7 +5,6 @@ const {getAllTopluluklar, toplulukOnay}=require('../controllers/toplulukControll
 const protectRoute = require('../middleware/protectRoute');
 
 router.get('/topluluklar', getAllTopluluklar);
-router.post('/topluluk-onay',protectRoute, toplulukOnay);
 
 
 module.exports=router;

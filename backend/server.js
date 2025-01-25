@@ -12,11 +12,15 @@ app.use(cookieParser());
 const etkinlikRoute = require('./routes/etkinlik.js');
 const toplulukRoute = require('./routes/topluluk.js');
 const yoneticiRoute = require('./routes/yonetici.js');
+const adminRoute=require('./routes/admin.js');
+const protectRouteAdmin = require('./middleware/protectRouteAdmin');
+const protectRoute = require('./middleware/protectRoute');
 
 
 app.use('/etkinlik',etkinlikRoute);
 app.use('/topluluk', toplulukRoute);
-app.use('/yonetici',yoneticiRoute);
+app.use('/yonetici',protectRoute, yoneticiRoute);
+app.use('/admin',protectRouteAdmin, adminRoute)
 
 
 console.log(process.env.PORT);

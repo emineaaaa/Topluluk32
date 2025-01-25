@@ -19,7 +19,7 @@ const yoneticiSchema=new mongoose.Schema({
       },
       yoneticiTopluluk: {
           type: String,
-          required: true,
+          required: false,
       },
       yoneticiRol: {
         type: String,
