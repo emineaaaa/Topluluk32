@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 
 const toplulukSchema = new mongoose.Schema({
-  toplulukId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Topluluk",
-  },
+  
   toplulukAdi: {
     type: String,
     required: true,
@@ -32,6 +29,7 @@ const toplulukSchema = new mongoose.Schema({
   toplulukKategorisi: {
     type: String,
     required: true,
+    enum: ['Uzmanlik', 'Kultur ve Sanat', 'Spor'],
   },
   uyeSayisi: {
     type: Number,

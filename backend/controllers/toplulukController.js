@@ -15,5 +15,20 @@ const getAllTopluluklar=async(req,res)=>{
     }
 }
 
+const getToplulukByKategori=async(req,res)=>{
+    try {
+        const kategori=req.params.toplulukKategorisi;
+        const topluluklar= await Topluluk.find({toplulukKategorisi:kategori});
+        if (!topluluklar || topluluklar.length===0){
+            return res.status(404).json({error:"Hiç Topluluk Yok."})
+        }
+        return res.status(200).json(topluluklar);
+        
+    } catch (error) {
+        console.error( error.message);
+        res.status(500).json({ error: "bağlanamadı " });
+    }
+}
 
-module.exports={getAllTopluluklar}
+
+module.exports={getAllTopluluklar, getToplulukByKategori}

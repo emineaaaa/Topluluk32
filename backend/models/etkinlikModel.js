@@ -1,14 +1,7 @@
 const mongoose = require('mongoose');
 
 const etkinlikSchema = new mongoose.Schema({
-  etkinlikId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Etkinlik",
-  },
-  toplulukId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Topluluk",
-  },
+  
   tarih: {
     type: Date,
     required: true
@@ -38,7 +31,7 @@ const etkinlikSchema = new mongoose.Schema({
   },
   etkinlikAyrintiFormu: {
     type: String,
-    
+    required: false
   }
 });
 

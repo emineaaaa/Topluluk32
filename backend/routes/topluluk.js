@@ -1,10 +1,10 @@
 const express= require ('express');
 const router= express.Router();
 
-const {getAllTopluluklar, toplulukOnay}=require('../controllers/toplulukController');
-const protectRoute = require('../middleware/protectRoute');
+const {getAllTopluluklar, toplulukOnay, getToplulukByKategori}=require('../controllers/toplulukController');
 
 router.get('/topluluklar', getAllTopluluklar);
+router.get('/topluluk-kategori/:toplulukKategorisi', getToplulukByKategori);
 
 
 module.exports=router;

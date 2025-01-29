@@ -1,7 +1,9 @@
 const Yonetici= require('../models/yoneticiModel');  
 const Topluluk=require('../models/toplulukModel')
+const Etkinlik=require('../models/etkinlikModel')
 const bcrypt = require('bcryptjs');
 const generateTokenAndSetCookie = require('../utils/generateTokenAndSetCookie.js');
+const { default: mongoose } = require('mongoose');
 
 
 
@@ -59,11 +61,9 @@ const yoneticiEkle= async(req,res)=>{
 
 const toplulukOnay=async(req,res)=>{
     try {
-        const id=req.yonetici._id;
         const {toplulukAdi, hakkinda, toplulukBaskani, iletisim, gecmisEtkinlikleri, logo, toplulukKategorisi, uyeSayisi}= req.body;
         const newTopluluk= new Topluluk({
-            toplulukAdi,
-            toplulukId:id,
+            toplulukAdi, 
             hakkinda,
             toplulukBaskani,
             iletisim,
@@ -82,12 +82,138 @@ const toplulukOnay=async(req,res)=>{
 
 
 
-const ToplulukSil=()=>{
+const toplulukSil=async(req,res)=>{
     try {
-        
+        const toplulukId = req.params.toplulukId;
+        const topluluk = await Topluluk.findByIdAndDelete(toplulukId);       
+         if(!topluluk){
+            res.status(404).json({error:"Hiç Topluluk Yok."})
+        }
+        res.status(200).json({message:"Topluluk Silindi"})
+
     } catch (error) {
-        
+        res.status(500).json({error:"bağlanamadı."})
     }
 }
 
-module.exports={yoneticiEkle, toplulukOnay}
+const toplulukGuncelle=async(req,res)=>{
+    try {
+        let {toplulukAdi, hakkinda, toplulukBaskani, iletisim, gecmisEtkinlikleri, logo, toplulukKategorisi, uyeSayisi}= req.body;
+        let toplulukId = req.params.toplulukId;
+        let topluluk = await Topluluk.findById(toplulukId);
+         if(!topluluk){
+            return res.status(404).json({error:"böyle bir topluluk yok."})
+        }
+
+        topluluk.toplulukAdi=toplulukAdi || topluluk.toplulukAdi;
+        topluluk.hakkinda=hakkinda || topluluk.hakkinda;
+        topluluk.toplulukBaskani=toplulukBaskani || topluluk.toplulukBaskani;
+        topluluk.iletisim=iletisim || topluluk.iletisim;
+        topluluk.gecmisEtkinlikleri=gecmisEtkinlikleri  || topluluk.gecmisEtkinlikleri;
+        topluluk.logo=logo || topluluk.logo;
+        topluluk.toplulukKategorisi=toplulukKategorisi || topluluk.toplulukKategorisi;
+        topluluk.uyeSayisi=uyeSayisi || topluluk.uyeSayisi;
+
+
+        const updatedTopluluk= await topluluk.save();
+        return res.status(200).json({ message: "Topluluk Güncellendi", updatedTopluluk });
+
+    } catch (error) {
+        console.error('Hata Detayı:', error);
+        return res.status(500).json({ error: "Bağlantı hatası.", details: error.message });
+    }
+}
+
+const yoneticiGuncelle=async(req,res)=>{
+    try {
+        let {yoneticiKullaniciAdi, yoneticiEmail, yoneticiTopluluk, yoneticiRol}= req.body;
+        let yoneticiId = req.params.yoneticiId;
+        let yonetici = await Yonetici.findById(yoneticiId);
+         if(!yonetici){
+            return res.status(404).json({error:"böyle bir yonetici yok."})
+        }
+        yonetici.yoneticiKullaniciAdi=yoneticiKullaniciAdi || yonetici.yoneticiKullaniciAdi;
+        yonetici.yoneticiEmail=yoneticiEmail || yonetici.yoneticiEmail;
+        yonetici.yoneticiTopluluk=yoneticiTopluluk || yonetici.yoneticiTopluluk;
+        yonetici.yoneticiRol=yoneticiRol || yonetici.yoneticiRol;    
+
+        const updatedYonetici= await yonetici.save();
+        return res.status(200).json({ message: "Yonetici Güncellendi", updatedYonetici });
+
+    } catch (error) {
+        console.error('Hata Detayı:', error);
+        return res.status(500).json({ error: "Bağlantı hatası.", details: error.message });
+    }
+}
+
+
+const etkinlikOnay= async(req,res)=>{
+    try {
+        const { tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu } = req.body;
+
+      const newEtkinlik = new Etkinlik({
+        tarih,
+        duzenleyen,
+        etkinlik,
+        aciklama,
+        konum,
+        etkinlikTuru,
+        etkinlikAyrintiFormu
+    });
+
+    const savedEtkinlik = await newEtkinlik.save();
+    res.status(201).json(savedEtkinlik);
+
+    console.log(error.message);
+} catch (error) {
+    if (!res.headersSent) {
+        res.status(500).json({ message: "bağlanamadı" });
+    }
+    console.log(error.message);
+}
+};
+
+
+const etkinlikGuncelle=async(req,res)=>{
+    try {
+        let {tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu}= req.body;
+        const etkinlikId = req.params.etkinlikId;
+        let etk= await Etkinlik.findById(etkinlikId);
+         if(!etk){
+            return res.status(404).json({error:"böyle bir etkinlik yok."})
+        }
+        etk.tarih=tarih || etk.tarih;
+        etk.duzenleyen=duzenleyen || etk.duzenleyen;
+        etk.etkinlik=etkinlik || etk.etkinlik;
+        etk.aciklama=aciklama || etk.aciklama;
+        etk.konum=konum || etk.konum;
+        etk.etkinlikTuru=etkinlikTuru || etk.etkinlikTuru;
+        etk.etkinlikAyrintiFormu=etkinlikAyrintiFormu || etk.etkinlikAyrintiFormu;
+
+        const updatedEtkinlik= await etk.save();
+        return res.status(200).json({ message: "Etkinlik güncellendi", updatedEtkinlik });
+
+    }
+
+        catch (error) {
+            console.error('Hata Detayı:', error);
+            return res.status(500).json({ error: "Bağlantı hatası.", details: error.message });
+        }
+        
+}
+
+const etkinlikSil=async(req,res)=>{
+    try {
+        const etkinlikId = req.params.etkinlikId;
+        const etkinlik = await Etkinlik.findByIdAndDelete(etkinlikId);       
+         if(!etkinlik){
+            res.status(404).json({error:"Hiç Etkinlik Yok."})
+        }
+        res.status(200).json({message:"Etkinlik Silindi"});
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: "Bağlanamadı" });
+    }
+};  
+
+module.exports={yoneticiEkle, toplulukOnay, toplulukSil, toplulukGuncelle, yoneticiGuncelle, etkinlikOnay, etkinlikGuncelle, etkinlikSil};
