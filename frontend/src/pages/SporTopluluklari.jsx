@@ -1,59 +1,70 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { TbBrandYoutubeFilled, TbWorldShare } from 'react-icons/tb';
-import ToplulukKategoriBar from '../components/ToplulukKategoriBar';
-
 
 const SporTopluluklari = () => {
+  const [topluluklar, setTopluluklar] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [topluluklar, setTopluluklar]=useState([]);
-
-    useEffect(()=>{
-        const topluluk=process.env.REACT_APP_TOPLULUKLAR;
-        fetch(topluluk)
-        .then(response => response.json())
-        .then(data=>{
-            const filteredData=data.filter(item=> item.toplulukKategorisi== 'Spor Topluluğu')
-            setTopluluklar(filteredData)
-            
-        })
-        .catch(error=> console.error("VEri çekme hatası:",error));
-    },[]);
+  useEffect(() => {
+    const topluluk = process.env.REACT_APP_TOPLULUK_KATEGORI + "/Spor";
+    fetch(topluluk)
+      .then(response => response.json())
+      .then(data => {
+        // Hata kontrolü: Dizi değilse boş diziye set et
+        if (Array.isArray(data)) {
+          setTopluluklar(data);
+        } else {
+          console.warn("Gelen veri dizi değil:", data);
+          setTopluluklar([]);
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Veri çekme hatası:", error);
+        setTopluluklar([]);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div>
+    
 
-      <div>
-        <ToplulukKategoriBar/>
-        </div>
-
-      <div class='page-container'>
-        <div class="columns is-multiline">
-  {topluluklar.map((topluluk, index) => (
-    <div class="column is-one-third " key={index}>
-      <div class=" topl-box">
-        <figure class="image is-custom-size">
-          <img class="is-rounded " src= {topluluk.logo}/>
-        </figure>
-        <div class="topl-satir">
-          <div class="topluluk-adi">{topluluk.toplulukAdi}</div>
-        <div class="topluluk-icons">
-          <button><TbWorldShare/></button>
-          <button><RiTwitterXFill/></button>
-          <button><FaInstagram/></button>
-          <button><TbBrandYoutubeFilled/></button>
-          <button><FaLinkedin/></button>
-
+      <div className="page-container">
+        {loading ? (
+          <p style={{ textAlign: "center", marginTop: "2rem" }}>Yükleniyor...</p>
+        ) : topluluklar.length === 0 ? (
+          <div className="notification is-warning has-text-centered mt-5">
+            Hiç spor topluluğu bulunamadı.
           </div>
+        ) : (
+          <div className="columns is-multiline">
+            {topluluklar.map((topluluk, index) => (
+              <div className="column is-one-third" key={index}>
+                <div className="topl-box">
+                  <figure className="image is-custom-size">
+                    <img className="is-rounded" src={topluluk.logo} alt="Topluluk logosu" />
+                  </figure>
+                  <div className="topl-satir">
+                    <div className="topluluk-adi">{topluluk.toplulukAdi}</div>
+                    <div className="topluluk-icons">
+                      <button><TbWorldShare /></button>
+                      <button><RiTwitterXFill /></button>
+                      <button><FaInstagram /></button>
+                      <button><TbBrandYoutubeFilled /></button>
+                      <button><FaLinkedin /></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
+        )}
       </div>
     </div>
-  ))}
-</div>
-</div>
-    </div>
-  )
-}
+  );
+};
 
-export default SporTopluluklari
+export default SporTopluluklari;

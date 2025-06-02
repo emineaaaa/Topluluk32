@@ -23,7 +23,7 @@ const YaklasanEtkinlikler = () => {
       })
       .catch(error => console.error("Veri çekme hatası:", error));
   }, []);
-  
+  console.log(etkinlikler);
 
   const scrollLeft = () => {
     if(sliceStart!==0){
@@ -62,10 +62,10 @@ const YaklasanEtkinlikler = () => {
 
         <div class="card-details padding-20px">
         <div class="event-detail">
-        <button  onClick={() => navigate(`/etkinlikdetay/${etkinlik.etkinlikId}`)}>{etkinlik.etkinlik }</button>
+        <button  onClick={() => navigate(`/etkinlikdetay`,{state:{etkinlik}})}>{etkinlik.etkinlik }</button>
         </div>
         <div class="community-detail" >
-         <button class="community-detail" onClick={() => navigate(`/toplulukdetay/${etkinlik.toplulukId}`)}> {etkinlik.duzenleyen}</button>
+         <button class="community-detail" onClick={() => navigate(`/toplulukdetay/${etkinlik.duzenleyen}`)}> {etkinlik.duzenleyen}</button>
         </div>
         <div class="date-detail">
           {etkinlik.tarih}

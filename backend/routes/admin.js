@@ -8,7 +8,7 @@ router.post('/topluluk-onay', toplulukOnay);
 router.delete('/topluluk-sil/:toplulukId', toplulukSil);
 router.put('/topluluk-guncelle/:toplulukId', toplulukGuncelle);
 router.put('/yonetici-guncelle/:yoneticiId', yoneticiGuncelle);
-router.post('/etkinlik-onay', etkinlikOnay);
+router.post('/etkinlik-onay/:etkinlikId', etkinlikOnay);
 router.put('/etkinlik-guncelle/:etkinlikId', etkinlikGuncelle);
 router.delete('/etkinlik-sil/:etkinlikId', etkinlikSil);
 

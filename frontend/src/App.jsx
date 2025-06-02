@@ -11,7 +11,10 @@ import KulturSanatTopluluklari from './pages/KulturSanatTopluluklari.jsx';
 import UzmanlıkTopluluklari from './pages/UzmanlikTopluluklari.jsx';
 import ToplulukDetay from './pages/ToplulukDetay.jsx';
 import AnaSayfa from './pages/AnaSayfa.jsx';
-
+import LoginPage from "./pages/LoginPage.jsx";
+import YoneticiEtkinlikİstek from "./pages/YoneticiEtkinlikİstek.jsx";
+import AdminPanel from "./pages/AdminPanel.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 
 
@@ -29,12 +32,32 @@ function App() {
         <Route path='/' element={<AnaSayfa/>}/>
         <Route path='/etkinlikler' element={<Etkinlikler/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        <Route path='/etkinlikdetay/:etkinlikId' element={<EtkinlikDetay/>}/>
+        <Route path='/etkinlikdetay' element={<EtkinlikDetay/>}/>
         <Route path='/topluluklar' element={<Topluluklar/>}/>
         <Route path='/uzmanlik-topluluklari' element={<UzmanlıkTopluluklari/>}/>
         <Route path='/kultur-sanat-topluluklari' element={<KulturSanatTopluluklari/>}/>
         <Route path='/spor-topluluklari' element={<SporTopluluklari/>}/>
-        <Route path='/toplulukdetay/:toplulukId' element={<ToplulukDetay/>}/>
+        <Route path='/toplulukdetay/:duzenleyen' element={<ToplulukDetay />} />
+        <Route path='/toplulukdetay' element={<ToplulukDetay />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/etkinlik-talep"
+          element={
+            <PrivateRoute>
+              <YoneticiEtkinlikİstek />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminPanel />
+            </PrivateRoute>
+          }
+        />
+
+
 
 
 

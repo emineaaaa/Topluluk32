@@ -86,9 +86,7 @@ const AnaSayfaCards = () => {
 
           
           <div className="column is-half">
-            <div class="ana-etk-tag">
-               <button class="tag is-medium">+ Etkinlik Gönder</button>
-          </div>
+            
   <div className="card anasayfa-cards2">
     <div className="card-content">
       <div className="content">

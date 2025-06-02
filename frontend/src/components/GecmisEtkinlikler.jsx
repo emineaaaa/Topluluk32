@@ -17,6 +17,7 @@ const GecmisEtkinlikler = () => {
       .then((response) => response.json())
       .then((data) => setEtkinlikler(data))
       .catch((error) => console.error('Veri çekme hatası:', error));
+      console.log(etkinlikler);
   }, []);
 
   const handlePageChange=(page)=>{setCurrentPage(page)}
@@ -41,12 +42,28 @@ const GecmisEtkinlikler = () => {
       {/* Yalnızca mevcut sayfadaki etkinlikleri göster */}
       {currentItems.map((etkinlik, index) => (
         <div className="columns row" key={index}>
-          <div className="column column-gecmis-etk">{etkinlik.tarih}</div>
           <div className="column column-gecmis-etk">
-            <button onClick={() => navigate(`/etkinlikdetay/${etkinlik.etkinlikId}`)}>{etkinlik.etkinlik }</button>
+          {
+            (() => {
+              const tarih = new Date(etkinlik.tarih);
+              const tarihStr = tarih.toLocaleDateString('tr-TR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+              });
+              const saatStr = tarih.toLocaleTimeString('tr-TR', {
+                hour: '2-digit',
+                minute: '2-digit'
+              });
+              return `${tarihStr} - ${saatStr}`;
+            })()
+          }
+          </div>
+          <div className="column column-gecmis-etk">
+            <button onClick={() => navigate(`/etkinlikdetay`,{state:{etkinlik}})}>{etkinlik.etkinlik }</button>
     </div>
           <div className="column column-gecmis-etk">
-            <button onClick={() => navigate(`/toplulukdetay/${etkinlik.toplulukId}`)}>{etkinlik.duzenleyen}</button></div>
+            <button onClick={() => navigate(`/toplulukdetay/${etkinlik.duzenleyen}`)}>{etkinlik.duzenleyen}</button></div>
         </div>
       ))}
 

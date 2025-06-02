@@ -32,6 +32,11 @@ const etkinlikSchema = new mongoose.Schema({
   etkinlikAyrintiFormu: {
     type: String,
     required: false
+  },
+
+  etkinlikDurumu: {
+    type: String,
+    enum: ['onaylandı', 'onay bekliyor'],
   }
 });
 

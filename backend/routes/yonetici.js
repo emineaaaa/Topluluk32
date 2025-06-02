@@ -1,8 +1,22 @@
-const express=require('express');   
-const router= express.Router();
+const express = require('express')
+const router = express.Router()
 
-const { yoneticiLogin}=require('../controllers/yoneticiController');
+const {
+  yoneticiLogin,
+  istekEtkinlikGonder,
+  sifreSifirlamaTalebi,
+  sifreyiSifirla
+} = require('../controllers/yoneticiController')
 
-router.post('/login', yoneticiLogin);
+const protectRoute = require('../middleware/protectRoute')
 
-module.exports=router;
+router.post('/login', yoneticiLogin)
+router.post('/etkinlik-gonder', protectRoute, istekEtkinlikGonder)
+router.post('/sifre-sifirlama-talebi', protectRoute, sifreSifirlamaTalebi)
+router.post('/sifreyi-sifirla/:token', protectRoute, sifreyiSifirla)
+
+router.get('/me', protectRoute, (req, res) => {
+  res.status(200).json(req.yonetici)
+})
+
+module.exports = router

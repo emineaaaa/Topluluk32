@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 const EtkinlikBilgisi = () => {
 
 
-  const [etkinlikler, setEtkinlikler] = useState({});
+  const [etkinlikler, setetkinlik] = useState({});
   const { etkinlikId } = useParams(); // URL'deki :id parametresini alıyoruz
+  const location = useLocation();
+  const { etkinlik } = location.state;
+  console.log(etkinlik);
 
-  useEffect(() => {
-    const etkinlikler = process.env.REACT_APP_ETKINLIKLER;
-    fetch(etkinlikler)
+
+
+  /*useEffect(() => {
+    const etkinlik = process.env.REACT_APP_etkinlik;
+    fetch(etkinlik)
       .then((response) => response.json())
       .then((data) => {
         const foundEtkinlik = data.find((etk) => etk.etkinlikId === parseInt(etkinlikId));
         if (foundEtkinlik) {
-          setEtkinlikler(foundEtkinlik);
+          setetkinlik(foundEtkinlik);
         } else {
           console.error("Etkinlik bulunamadı!");
-          setEtkinlikler({});        }
+          setetkinlik({});        }
       })
       .catch((error) => console.error("Veri çekme hatası:", error));
   }, [etkinlikId]);
+  */
   
   
 
@@ -33,7 +39,7 @@ const EtkinlikBilgisi = () => {
     <div class="card-image ">
       <figure class="image is-4by3">
         <img
-          src={etkinlikler.gorsel}
+          src={etkinlik.gorsel}
           alt="Placeholder image"
         />
       </figure>
@@ -44,11 +50,11 @@ const EtkinlikBilgisi = () => {
     <div class="card card-etkinlik">
       <div class="card-content">
         <div class="content">
-          <p>{etkinlikler.duzenleyen}</p>
-         <h1> {etkinlikler.etkinlik}</h1>
-          <p>Tarih: {etkinlikler.tarih}</p>
-          <p>Konum: {etkinlikler.konum}</p>
-          <p>Etkinlik Türü: {etkinlikler.etkinlikTuru}</p>
+          <p>{etkinlik.duzenleyen}</p>
+         <h1> {etkinlik.etkinlik}</h1>
+          <p>Tarih: {etkinlik.tarih}</p>
+          <p>Konum: {etkinlik.konum}</p>
+          <p>Etkinlik Türü: {etkinlik.etkinlikTuru}</p>
 
 
         </div>
@@ -58,7 +64,7 @@ const EtkinlikBilgisi = () => {
     <div class="card card-etkinlik-bilgisi">
   <div class="card-content">
     <div class="content">
-     {etkinlikler.aciklama}
+     {etkinlik.aciklama}
     </div>
   </div>
   </div>

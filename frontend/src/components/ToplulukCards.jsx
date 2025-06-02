@@ -1,68 +1,92 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { TbWorldShare } from "react-icons/tb";
 import { RiTwitterXFill } from "react-icons/ri";
-import { FaInstagram } from "react-icons/fa6";
+import { FaInstagram, FaLinkedin } from "react-icons/fa6";
 import { TbBrandYoutubeFilled } from "react-icons/tb";
-import { FaLinkedin } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 
-
-
 const ToplulukCards = () => {
+  const [topluluklar, setTopluluklar] = useState([]);
+  const [isSortedAZ, setIsSortedAZ] = useState(false);
 
-    const [topluluklar, setTopluluklar]=useState([]);
+  const navigate = useNavigate();
 
-    useEffect(()=>{
-        const topluluk=process.env.REACT_APP_TOPLULUKLAR;
-        fetch(topluluk)
-        .then(response => response.json())
-        .then(data=>{
-            setTopluluklar(data);
-        })
-        .catch(error=> console.error("VEri çekme hatası:",error));
-    },[]);
+  useEffect(() => {
+    const topluluk = process.env.REACT_APP_TOPLULUKLAR;
+    fetch(topluluk)
+      .then(response => response.json())
+      .then(data => {
+        setTopluluklar(data);
+      })
+      .catch(error => console.error("Veri çekme hatası:", error));
+  }, []);
 
-   const navigate=useNavigate();
-      
-   
+  const handleSortAZ = () => {
+    const sorted = [...topluluklar].sort((a, b) =>
+      a.toplulukAdi.localeCompare(b.toplulukAdi, 'tr')
+    );
+    setTopluluklar(sorted);
+    setIsSortedAZ(true);
+  };
 
   return (
-    <div>
+    <div className='page-container'>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem' }}>
+        <button className='button is-link' onClick={handleSortAZ}>
+          A-Z Sırala
+        </button>
+      </div>
 
-      
-      <div class='page-container'>
-        <div class="columns is-multiline">
-  {topluluklar.map((topluluk, index) => (
-    <div class="column is-one-third " key={index}>
-      <div class="topl-box">
-        <figure class="image is-custom-size">
-          <img class="is-rounded " src= {topluluk.logo}/>
-        </figure>
-        <div class="topl-satir">
-          <div class="topluluk-adi" onClick={() => navigate(`/toplulukdetay/${topluluk.toplulukId}`)}>
-            <button class="topluluk-adi">{topluluk.toplulukAdi}</button></div>
-        <div class="topluluk-icons">
-          <button><TbWorldShare/></button>
-          <button><RiTwitterXFill/></button>
-          <button><FaInstagram/></button>
-          <button><TbBrandYoutubeFilled/></button>
-          <button><FaLinkedin/></button>
-
+      <div className='columns is-multiline'>
+        {topluluklar.map((topluluk, index) => (
+          <div className='column is-one-third' key={index}>
+            <div className='topl-box'>
+              <figure className='image is-custom-size'>
+                <img className='is-rounded' src={topluluk.logo} alt={topluluk.toplulukAdi} />
+              </figure>
+              <div className='topl-satir'>
+                <div className="topluluk-adi" onClick={() => navigate('/toplulukdetay', { state: { topluluk } })}>
+                  <button className="topluluk-adi">{topluluk.toplulukAdi}</button>
+                </div>
+                <div className="topluluk-icons">
+                  <button
+                    onClick={() => window.open(topluluk.sosyalMedya?.web, '_blank')}
+                    disabled={!topluluk.sosyalMedya?.web}
+                  >
+                    <TbWorldShare />
+                  </button>
+                  <button
+                    onClick={() => window.open(topluluk.sosyalMedya?.x, '_blank')}
+                    disabled={!topluluk.sosyalMedya?.x}
+                  >
+                    <RiTwitterXFill />
+                  </button>
+                  <button
+                    onClick={() => window.open(topluluk.sosyalMedya?.instagram, '_blank')}
+                    disabled={!topluluk.sosyalMedya?.instagram}
+                  >
+                    <FaInstagram />
+                  </button>
+                  <button
+                    onClick={() => window.open(topluluk.sosyalMedya?.youtube, '_blank')}
+                    disabled={!topluluk.sosyalMedya?.youtube}
+                  >
+                    <TbBrandYoutubeFilled />
+                  </button>
+                  <button
+                    onClick={() => window.open(topluluk.sosyalMedya?.linkedIn, '_blank')}
+                    disabled={!topluluk.sosyalMedya?.linkedIn}
+                  >
+                    <FaLinkedin />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          </div>
+        ))}
       </div>
     </div>
-  ))}
-</div>
-</div>
-      
-</div>
-    
+  );
+};
 
-  
-  )
-}
-
-export default ToplulukCards
+export default ToplulukCards;

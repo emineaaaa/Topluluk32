@@ -27,6 +27,10 @@ const yoneticiSchema=new mongoose.Schema({
         enum:["yonetici","admin"]
       },
 
+      
+      sifreSifirlamaToken: { type: String },
+    sifreSifirlamaTokenGecerlilik: { type: Date }
+
 });
 
 module.exports=mongoose.model("Yonetici",yoneticiSchema);

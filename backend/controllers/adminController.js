@@ -30,7 +30,9 @@ const yoneticiEkle= async(req,res)=>{
             yoneticiEmail,
             yoneticiSifre: hashedPassword,
             yoneticiTopluluk,
-            yoneticiRol
+            yoneticiRol,
+            sifreSifirlamaToken: undefined,  // Yeni kayıtta token olmayacak
+            sifreSifirlamaTokenGecerlilik: undefined
         });
         if (newYonetici) {
             generateTokenAndSetCookie(newYonetici._id, res);
@@ -61,7 +63,7 @@ const yoneticiEkle= async(req,res)=>{
 
 const toplulukOnay=async(req,res)=>{
     try {
-        const {toplulukAdi, hakkinda, toplulukBaskani, iletisim, gecmisEtkinlikleri, logo, toplulukKategorisi, uyeSayisi}= req.body;
+        const {toplulukAdi, hakkinda, toplulukBaskani, iletisim, gecmisEtkinlikleri, logo, toplulukKategorisi, uyeSayisi,sosyalMedya}= req.body;
         const newTopluluk= new Topluluk({
             toplulukAdi, 
             hakkinda,
@@ -70,7 +72,8 @@ const toplulukOnay=async(req,res)=>{
             gecmisEtkinlikleri,
             logo,
             toplulukKategorisi,
-            uyeSayisi
+            uyeSayisi,
+            sosyalMedya
         });
         const savedTopluluk= await newTopluluk.save();
         res.status(201).json(savedTopluluk);
@@ -113,6 +116,8 @@ const toplulukGuncelle=async(req,res)=>{
         topluluk.logo=logo || topluluk.logo;
         topluluk.toplulukKategorisi=toplulukKategorisi || topluluk.toplulukKategorisi;
         topluluk.uyeSayisi=uyeSayisi || topluluk.uyeSayisi;
+        topluluk.sosyalMedya=sosyalMedya || topluluk.sosyalMedya;
+
 
 
         const updatedTopluluk= await topluluk.save();
@@ -149,34 +154,30 @@ const yoneticiGuncelle=async(req,res)=>{
 
 const etkinlikOnay= async(req,res)=>{
     try {
-        const { tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu } = req.body;
+        const { etkinlikId } = req.params;
 
-      const newEtkinlik = new Etkinlik({
-        tarih,
-        duzenleyen,
-        etkinlik,
-        aciklama,
-        konum,
-        etkinlikTuru,
-        etkinlikAyrintiFormu
-    });
-
-    const savedEtkinlik = await newEtkinlik.save();
-    res.status(201).json(savedEtkinlik);
-
-    console.log(error.message);
-} catch (error) {
-    if (!res.headersSent) {
-        res.status(500).json({ message: "bağlanamadı" });
-    }
-    console.log(error.message);
-}
-};
+        const etkinlik = await Etkinlik.findById(etkinlikId);
+        if (!etkinlik) {
+            return res.status(404).json({ error: 'Etkinlik bulunamadı' });
+        }
+        
+        etkinlik.etkinlikDurumu = 'onaylandı';
+        const updatedEtkinlik = await etkinlik.save();
+        res.status(200).json({ message: 'Etkinlik onaylandı', etkinlik: updatedEtkinlik });
+       
+    
+        } catch (error) {
+            if (!res.headersSent) {
+                res.status(500).json({ message: "bağlanamadı" });
+            }
+            console.log(error.message);
+        }
+        };
 
 
 const etkinlikGuncelle=async(req,res)=>{
     try {
-        let {tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu}= req.body;
+        let {tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu,etkinlikDurumu}= req.body;
         const etkinlikId = req.params.etkinlikId;
         let etk= await Etkinlik.findById(etkinlikId);
          if(!etk){
@@ -189,6 +190,7 @@ const etkinlikGuncelle=async(req,res)=>{
         etk.konum=konum || etk.konum;
         etk.etkinlikTuru=etkinlikTuru || etk.etkinlikTuru;
         etk.etkinlikAyrintiFormu=etkinlikAyrintiFormu || etk.etkinlikAyrintiFormu;
+        etk.etkinlikDurumu=etkinlikDurumu || etk.etkinlikDurumu;
 
         const updatedEtkinlik= await etk.save();
         return res.status(200).json({ message: "Etkinlik güncellendi", updatedEtkinlik });
@@ -215,5 +217,11 @@ const etkinlikSil=async(req,res)=>{
         res.status(500).json({ error: "Bağlanamadı" });
     }
 };  
+
+
+
+
+   
+    
 
 module.exports={yoneticiEkle, toplulukOnay, toplulukSil, toplulukGuncelle, yoneticiGuncelle, etkinlikOnay, etkinlikGuncelle, etkinlikSil};

@@ -35,6 +35,28 @@ const toplulukSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  sosyalMedya: {
+    web: {
+      type: String,
+      match: [/^https?:\/\/.+/, 'Geçerli bir URL giriniz']
+    },
+    x: {
+      type: String,
+      match: [/^https?:\/\/.+/, 'Geçerli bir URL giriniz']
+    },
+    instagram: {
+      type: String,
+      match: [/^https?:\/\/.+/, 'Geçerli bir URL giriniz']
+    },
+    youtube: {
+      type: String,
+      match: [/^https?:\/\/.+/, 'Geçerli bir URL giriniz']
+    },
+    linkedIn: {
+      type: String,
+      match: [/^https?:\/\/.+/, 'Geçerli bir URL giriniz']
+    }
+  }
 });
 
 // Modeli oluşturuyoruz
