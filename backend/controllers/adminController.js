@@ -101,7 +101,7 @@ const toplulukSil=async(req,res)=>{
 
 const toplulukGuncelle=async(req,res)=>{
     try {
-        let {toplulukAdi, hakkinda, toplulukBaskani, iletisim, gecmisEtkinlikleri, logo, toplulukKategorisi, uyeSayisi}= req.body;
+        let {toplulukAdi, hakkinda, toplulukBaskani, iletisim, gecmisEtkinlikleri, logo, toplulukKategorisi, uyeSayisi,sosyalMedya}= req.body;
         let toplulukId = req.params.toplulukId;
         let topluluk = await Topluluk.findById(toplulukId);
          if(!topluluk){
@@ -116,9 +116,11 @@ const toplulukGuncelle=async(req,res)=>{
         topluluk.logo=logo || topluluk.logo;
         topluluk.toplulukKategorisi=toplulukKategorisi || topluluk.toplulukKategorisi;
         topluluk.uyeSayisi=uyeSayisi || topluluk.uyeSayisi;
-        topluluk.sosyalMedya=sosyalMedya || topluluk.sosyalMedya;
-
-
+        
+        // Sosyal medya opsiyonel olarak güncelle
+        if (sosyalMedya !== undefined) {
+            topluluk.sosyalMedya = sosyalMedya;
+        }
 
         const updatedTopluluk= await topluluk.save();
         return res.status(200).json({ message: "Topluluk Güncellendi", updatedTopluluk });
