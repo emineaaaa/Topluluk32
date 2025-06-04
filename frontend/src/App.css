@@ -39,37 +39,198 @@ body {
   justify-content: center;
 }
 
-/*SduRibbon.jsx*/
-.section {
-  position: relative; /* Metinlerin görselin üzerinde olması için */
-  background-image: url(../public/sdu.jpg); /* Buraya görsel yolunu ekleyin */
-  background-size: cover; /* Görseli kapsayacak şekilde boyutlandırır */
-  background-position: center; /* Görselin ortalanması */
-  background-position-y: cen;
-  height: 500px; /* Section yüksekliği */
-  display: flex; /* İçerik merkezleme için */
-  flex-direction: column;
-  justify-content: start;
-  align-items: flex-end;
-  color: white; /* Metin rengini beyaz yapar */
-  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7); /* Metin okunabilirliğini artırır */
+/*SduRibbon.jsx - Modern ve Responsive Tasarım*/
+.sdu-ribbon-container {
+  width: 100%;
+  overflow: hidden;
 }
 
-.ana-title{
-  color: rgb(56, 158, 114);;
-  font-size: xxx-large;
-  background-color: rgba(0, 0, 0, 0.5);
+.hero-section-sdu {
+  position: relative;
+  background-image: url(../public/sdu.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 5%;
+}
+
+.hero-background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(56, 158, 114, 0.1) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  width: 100%;
+}
+
+.hero-text-container {
+  text-align: right;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.hero-main-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.title-highlight {
+  color: rgb(56, 158, 114);
+  font-weight: 800;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+  padding: 0.8rem 1.8rem;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 15px;
+  display: inline-block;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(56, 158, 114, 0.6);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle-text {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 300;
+  color: #ffffff;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  padding: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle-emphasis {
+  color: rgb(56, 158, 114);
+  font-weight: 700;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.hero-accent-line {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, rgb(56, 158, 114), transparent);
+  margin-left: auto;
+  border-radius: 2px;
+  animation: expandLine 1.5s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+/* Responsive tasarım */
+@media (max-width: 1024px) {
+  .hero-section-sdu {
+    justify-content: center;
+    text-align: center;
+    padding: 0 3%;
+    background-attachment: scroll;
+  }
+  
+  .hero-text-container {
+    text-align: center;
+  }
+  
+  .hero-accent-line {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section-sdu {
+    height: 80vh;
+    min-height: 500px;
+    padding: 0 1rem;
+  }
+  
+  .hero-content-wrapper {
+    max-width: 100%;
+  }
+  
+  .title-highlight {
+    padding: 0.3rem 1rem;
     border-radius: 10px;
+  }
+  
+  .hero-subtitle-text {
+    padding: 0.8rem;
+    border-radius: 8px;
+  }
 }
 
-.ana-subtitle{
-  color: #ffffff;
-  font-size: xx-large;
+@media (max-width: 480px) {
+  .hero-section-sdu {
+    height: 70vh;
+    min-height: 400px;
+  }
+  
+  .title-highlight {
+    padding: 0.2rem 0.8rem;
+    border-width: 1px;
+  }
+  
+  .hero-subtitle-text {
+    padding: 0.6rem;
+  }
+  
+  .hero-accent-line {
+    width: 60px;
+  }
 }
 
-.ana-str{
-  color: #ffffff;
+/* Dark mode uyumluluğu */
+[data-theme="dark"] .title-highlight {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(56, 158, 114, 0.5);
 }
+
+[data-theme="dark"] .hero-subtitle-text {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Eski stiller kaldırıldı */
+/* .section, .ana-title, .ana-subtitle, .ana-str stilleri artık kullanılmıyor */
 
 
 
