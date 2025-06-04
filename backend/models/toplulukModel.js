@@ -29,7 +29,7 @@ const toplulukSchema = new mongoose.Schema({
   toplulukKategorisi: {
     type: String,
     required: true,
-    enum: ['Uzmanlik', 'Kultur ve Sanat', 'Spor'],
+    enum: ['Uzmanlik', 'Kultur ve Sanat', 'Spor', 'Sosyal Sorumluluk'],
   },
   uyeSayisi: {
     type: Number,
