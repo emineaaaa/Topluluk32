@@ -175,9 +175,7 @@ const UzmanlikTopluluklari = () => {
                       <button className="social-icon-btn"><FaLinkedin /></button>
                     </div>
                   </div>
-                  <div className="card-overlay">
-                    <span className="member-count">👥 {topluluk.uyeSayisi || 'N/A'} Üye</span>
-                  </div>
+                
                 </div>
               </div>
             ))}
