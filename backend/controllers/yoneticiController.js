@@ -47,7 +47,7 @@ const yoneticiLogin= async(req,res)=>{
 
 const istekEtkinlikGonder=async(req,res)=>{
     try {
-      const { tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu ,etkinlikDurumu} = req.body;
+      const { tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu , etkinlikDurumu ,etkinlikAfis} = req.body;
 
     const newEtkinlik = new Etkinlik({
       tarih,
@@ -57,7 +57,8 @@ const istekEtkinlikGonder=async(req,res)=>{
       konum,
       etkinlikTuru,
       etkinlikAyrintiFormu,
-      etkinlikDurumu:"onay bekliyor"
+      etkinlikDurumu:"onay bekliyor",
+      etkinlikAfis
   });
 
   const savedEtkinlik = await newEtkinlik.save();

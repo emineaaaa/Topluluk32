@@ -37,7 +37,10 @@ const etkinlikSchema = new mongoose.Schema({
   etkinlikDurumu: {
     type: String,
     enum: ['onaylandı', 'onay bekliyor'],
-  }
+  },
+  etkinlikAfis: {
+    type: String, 
+  },
 });
 
 const Etkinlik = mongoose.model('Etkinlik', etkinlikSchema);

@@ -71,18 +71,22 @@ const getEtkinlikByGecmis = async (req, res) => {
     }
 };
 
-const getEtkinlikByGelecek =async(req,res)=>{
+const getEtkinlikByGelecek = async (req, res) => {
     try {
-        const bugun = new Date();
-        bugun.setHours(0, 0, 0, 0); //saati sıfırladık
-
-        const gelecekEtkinlikler = await Etkinlik.find({ tarih: { $gte: bugun } }&& {etkinlikDurumu:"onaylandı"})
-            .sort({ tarih: 1 });
-        return res.status(200).json(gelecekEtkinlikler);
+      const bugun = new Date();
+      bugun.setHours(0, 0, 0, 0); // günü 00:00'a sabitliyoruz
+  
+      const gelecekEtkinlikler = await Etkinlik.find({
+        tarih: { $gte: bugun },
+        etkinlikDurumu: "onaylandı"
+      }).sort({ tarih: 1 });
+  
+      return res.status(200).json(gelecekEtkinlikler);
     } catch (error) {
-        return res.status(500).json({error:"bağlanamadı."})
+      return res.status(500).json({ error: "bağlanamadı." });
     }
-};
+  };
+  
 
 
 

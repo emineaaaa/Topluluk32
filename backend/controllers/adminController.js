@@ -179,7 +179,7 @@ const etkinlikOnay= async(req,res)=>{
 
 const etkinlikGuncelle=async(req,res)=>{
     try {
-        let {tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu,etkinlikDurumu}= req.body;
+        let {tarih, duzenleyen, etkinlik,aciklama, konum, etkinlikTuru, etkinlikAyrintiFormu,etkinlikDurumu, etkinlikAfis}= req.body;
         const etkinlikId = req.params.etkinlikId;
         let etk= await Etkinlik.findById(etkinlikId);
          if(!etk){
@@ -193,6 +193,7 @@ const etkinlikGuncelle=async(req,res)=>{
         etk.etkinlikTuru=etkinlikTuru || etk.etkinlikTuru;
         etk.etkinlikAyrintiFormu=etkinlikAyrintiFormu || etk.etkinlikAyrintiFormu;
         etk.etkinlikDurumu=etkinlikDurumu || etk.etkinlikDurumu;
+        etk.etkinlikAfis=etkinlikAfis || etk.etkinlikAfis;
 
         const updatedEtkinlik= await etk.save();
         return res.status(200).json({ message: "Etkinlik güncellendi", updatedEtkinlik });

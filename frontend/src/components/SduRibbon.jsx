@@ -2,16 +2,23 @@ import React from 'react'
 
 const SduRibbon = () => {
   return (
-    <div>
-      
-      <section class="section is-medium">
-  <h1 class="title ana-title">TOPLULUK32</h1>
-  <h2 class="subtitle ana-subtitle">
-    Süleyman Demirel Üniversitesi'nin  <strong class="ana-str">Topluluk Medyası</strong>
-   
-  </h2>
-</section>
-
+    <div className="sdu-ribbon-container">
+      <section className="hero-section-sdu">
+        <div className="hero-background-overlay"></div>
+        <div className="hero-content-wrapper">
+          <div className="hero-text-container">
+            <h1 className="hero-main-title">
+              <span className="title-highlight">TOPLULUK32</span>
+            </h1>
+            <h2 className="hero-subtitle-text">
+              Süleyman Demirel Üniversitesi'nin
+              <br />
+              <strong className="subtitle-emphasis">Topluluk Medyası</strong>
+            </h2>
+            <div className="hero-accent-line"></div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
